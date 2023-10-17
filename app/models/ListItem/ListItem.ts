@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-import {number} from "prop-types";
+import mongoose, {Types} from "mongoose";
 
 export interface ListItem extends mongoose.Document {
+    _id: string,
     name: string,
     photo: string,
     favorite: boolean,
@@ -15,32 +15,35 @@ export interface ListItem extends mongoose.Document {
 }
 
 const ListItemSchema = new mongoose.Schema<ListItem>({
+    _id: {
+        type: Types.ObjectId
+    },
     name: {
-        type: string,
+        type: Types.String,
         required: [true, 'Please provide a name for this item.'],
         maxlength: [100, 'Name cannot exceed 100 characters.']
     },
     photo: {
-        type: string
+        type: Types.String
     },
     favorite: {
-        type: "boolean"
+        type: Types.Boolean
     },
     info: {
         category: {
-            type: string,
+            type:Types.String,
         },
         quantity: {
-            type: number
+            type: Types.Number
         },
         packageSize: {
-            type: string
+            type: Types.String
         },
         price: {
-            type: number
+            type: Types.Number
         },
         stores: {
-            type: [string]
+            type: [Types.String]
         }
     }
 })

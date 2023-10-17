@@ -1,7 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, {Types} from "mongoose";
 import {ListType} from "@/app/models/List/ListType";
+import ListItem from "@/app/models/ListItem/ListItem";
 
 export interface List extends mongoose.Document {
+    _id: string;
     name: string;
     settings: {
         listType: ListType,
@@ -11,10 +13,16 @@ export interface List extends mongoose.Document {
 }
 
 const ListSchema = new mongoose.Schema<List>({
+    _id: {
+        type: Types.ObjectId
+    },
     name: {
-        type: String,
+        type: Types.String,
         required: [true, 'Please provide a name for this list.'],
         maxlength: [100, 'Name cannot be more than 60 characters']
+    },
+    listItems: {
+        type: [ListItem]
     },
     settings: {
         listType: {
@@ -22,11 +30,11 @@ const ListSchema = new mongoose.Schema<List>({
         required: [true, 'Please select a list type.']
         },
         icon: {
-            type: String,
+            type: Types.String,
             required: [true, 'Please select an icon.']
         },
         theme: {
-            type: String,
+            type: Types.String,
             required: [true, 'Please select a theme.']
         }
     }
