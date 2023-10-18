@@ -5,7 +5,7 @@ export interface ListType extends mongoose.Document {
     description: string;
 }
 
-const ListTypeSchema = new mongoose.Schema<ListType>({
+export const ListTypeSchema = new mongoose.Schema<ListType>({
     name: {
         type: String
     },
