@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Grocery List",
+    "description": "Common grocery items will be suggested as you type and categorized automatically."
+  },
+
+  {
+    "name": "Categorized List",
+    "description": "Use custom categories to create an organized list, such as a gift list or packing list."
+  },
+  {
+    "name": "Basic List",
+    "description": "A simple list of items, without categories."
+  }
+
+]
