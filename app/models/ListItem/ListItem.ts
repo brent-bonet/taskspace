@@ -1,7 +1,6 @@
 import mongoose, {Types} from "mongoose";
 
 export interface ListItem extends mongoose.Document {
-    _id: string,
     name: string,
     photo: string,
     favorite: boolean,
@@ -15,9 +14,6 @@ export interface ListItem extends mongoose.Document {
 }
 
 const ListItemSchema = new mongoose.Schema<ListItem>({
-    _id: {
-        type: Types.ObjectId
-    },
     name: {
         type: Types.String,
         required: [true, 'Please provide a name for this item.'],
