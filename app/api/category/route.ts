@@ -5,6 +5,6 @@ export async function GET() {
   await dbConnect()
 
   const categories = await Category.find({}) /* find all the data in our database */
-  console.log('categories', categories)s
+  console.log('categories', categories)
   return Response.json(categories);
 }
