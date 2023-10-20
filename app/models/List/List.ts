@@ -1,51 +1,36 @@
-import mongoose, {Types} from "mongoose";
-import {ListType} from "@/app/models/List/ListType";
-import ListItem from "@/app/models/ListItem/ListItem";
+import mongoose from "mongoose";
+import {ListItemSchema} from "@/app/models/ListItem/ListItem";
+import {ListTypeSchema} from "@/app/models/List/ListType";
 
 export interface List extends mongoose.Document {
-    _id: string;
     name: string;
     settings: {
-        listType: ListType,
+        listType: ListTypeSchema,
         icon: string,
         theme: string
     }
 }
 
 const ListSchema = new mongoose.Schema<List>({
-    _id: {
-        type: Types.ObjectId
-    },
     name: {
-        type: Types.String,
-        required: [true, 'Please provide a name for this list.'],
+        type: String,
+        // required: [true, 'Please provide a name for this list.'],
         maxlength: [100, 'Name cannot be more than 60 characters']
     },
     listItems: {
-        type: [ListItem]
+        type: [ListItemSchema]
     },
     settings: {
         listType: {
-        type: ListType,
-        required: [true, 'Please select a list type.']
+        type: ListTypeSchema,
         },
         icon: {
-            type: Types.String,
-            required: [true, 'Please select an icon.']
+            type: String,
         },
         theme: {
-            type: Types.String,
-            required: [true, 'Please select a theme.']
+            type: String,
         }
     }
 });
-
-// name: {
-//     /* The name of this pet */
-
-//     type: String,
-//     required: [true, 'Please provide a name for this pet.'],
-//     maxlength: [60, 'Name cannot be more than 60 characters'],
-//   },
 
 export default mongoose.models.List || mongoose.model<List>('List', ListSchema)

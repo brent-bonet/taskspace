@@ -1,20 +1,16 @@
-import mongoose, {Types} from "mongoose";
+import mongoose from "mongoose";
 
 export interface ListType extends mongoose.Document {
-    _id: string;
     name: string;
     description: string;
 }
 
-const ListTypeSchema = new mongoose.Schema<ListType>({
-    _id: {
-        type: Types.ObjectId
-    },
+export const ListTypeSchema = new mongoose.Schema<ListType>({
     name: {
-        type: Types.String
+        type: String
     },
     description: {
-        type: Types.String
+        type: String
     }
 });
 

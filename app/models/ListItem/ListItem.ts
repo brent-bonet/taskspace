@@ -1,7 +1,6 @@
-import mongoose, {Types} from "mongoose";
+import mongoose from "mongoose";
 
 export interface ListItem extends mongoose.Document {
-    _id: string,
     name: string,
     photo: string,
     favorite: boolean,
@@ -14,40 +13,36 @@ export interface ListItem extends mongoose.Document {
     }
 }
 
-const ListItemSchema = new mongoose.Schema<ListItem>({
-    _id: {
-        type: Types.ObjectId
-    },
+export const ListItemSchema = new mongoose.Schema<ListItem>({
     name: {
-        type: Types.String,
+        type: String,
         required: [true, 'Please provide a name for this item.'],
         maxlength: [100, 'Name cannot exceed 100 characters.']
     },
     photo: {
-        type: Types.String
+        type: String
     },
     favorite: {
-        type: Types.Boolean
+        type: Boolean
     },
     info: {
         category: {
-            type:Types.String,
+            type: String,
         },
         quantity: {
-            type: Types.Number
+            type: Number
         },
         packageSize: {
-            type: Types.String
+            type: String
         },
         price: {
-            type: Types.Number
+            type: Number
         },
         stores: {
-            type: [Types.String]
+            type: [String]
         }
     }
 })
 
 export default mongoose.models.ListItem || mongoose.model<ListItem>('ListItem', ListItemSchema)
-
 
